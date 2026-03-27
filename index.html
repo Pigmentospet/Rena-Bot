@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pigmentos · Encuentra el regalo perfecto</title>
-  <!-- Seguridad: bloquea iframes externos, evita sniffing, activa XSS protection -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
   <meta http-equiv="X-XSS-Protection" content="1; mode=block"/>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://drive.google.com https://i.ibb.co; style-src 'unsafe-inline'; script-src 'unsafe-inline';"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://raw.githubusercontent.com; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src *;"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -40,8 +39,6 @@
     .progress-fill { height: 100%; background: white; border-radius: 10px; transition: width 0.4s ease; }
     .progress-label { font-size: 11px; opacity: 0.8; margin-top: 5px; }
     .body { padding: 28px; }
-
-    /* WELCOME */
     .welcome { text-align: center; }
     .rena-circle {
       width: 110px; height: 110px; border-radius: 50%; overflow: hidden;
@@ -57,8 +54,6 @@
       padding: 14px 36px; font-size: 15px; font-weight: 700;
       cursor: pointer; box-shadow: 0 4px 16px rgba(193,127,90,0.3);
     }
-
-    /* QUESTION */
     .question h3 { color: #5a2a0a; font-size: 17px; margin-bottom: 20px; line-height: 1.4; font-weight: 700; }
     .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
     .option-btn {
@@ -77,17 +72,12 @@
       font-size: 13px; cursor: pointer; font-weight: 600; font-family: inherit;
     }
     .btn-nav:hover { background: #fdf6f0; }
-
-    /* RESULTS */
     .results-header { text-align: center; margin-bottom: 20px; }
     .results-header .icon { font-size: 32px; margin-bottom: 6px; }
     .results-header h3 { color: #5a2a0a; font-size: 18px; margin-bottom: 6px; font-weight: 700; }
     .results-header p { color: #a07050; font-size: 13px; }
     .product-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
-    .product-card {
-      border: 2px solid #f0d8c0; border-radius: 16px;
-      padding: 16px; position: relative;
-    }
+    .product-card { border: 2px solid #f0d8c0; border-radius: 16px; padding: 16px; position: relative; }
     .product-card.top { background: linear-gradient(135deg,#fff8f3,#fde8d8); border-color: #c17f5a; }
     .product-card.other { background: #fdf8f5; }
     .badge {
@@ -106,10 +96,7 @@
       color: #7a4a2a; line-height: 1.7;
     }
     .notes-box div + div { margin-top: 4px; }
-    .cta-box {
-      background: #fde8d8; border-radius: 14px;
-      padding: 14px 16px; text-align: center; margin-bottom: 16px;
-    }
+    .cta-box { background: #fde8d8; border-radius: 14px; padding: 14px 16px; text-align: center; margin-bottom: 16px; }
     .cta-box .cta-title { font-size: 13px; color: #7a4a2a; font-weight: 600; }
     .cta-box .cta-sub { font-size: 12px; color: #a07050; margin-top: 4px; }
     .btn-wa {
@@ -118,10 +105,7 @@
       padding: 10px 24px; font-size: 13px; font-weight: 700;
       text-decoration: none; box-shadow: 0 3px 12px rgba(37,211,102,0.3);
     }
-    .footer-brand {
-      display: flex; align-items: center; justify-content: center;
-      gap: 10px; padding-top: 12px; border-top: 1px solid #f0d8c0;
-    }
+    .footer-brand { display: flex; align-items: center; justify-content: center; gap: 10px; padding-top: 12px; border-top: 1px solid #f0d8c0; }
     .logo-xs { width: 32px; height: 32px; border-radius: 50%; overflow: hidden; background: #c9a882; }
     .logo-xs img { width: 100%; height: 100%; object-fit: cover; }
     .footer-name { font-size: 12px; font-weight: 700; color: #7a4a2a; }
@@ -131,11 +115,9 @@
 </head>
 <body>
 <div class="card">
-  <!-- HEADER -->
   <div class="header">
     <div class="header-top">
       <div class="logo-sm">
-        <!-- ✏️ REEMPLAZA src CON TU URL DE LOGO -->
         <img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Pigmentos.png" alt="Pigmentos logo" />
       </div>
       <div>
@@ -151,12 +133,9 @@
   </div>
 
   <div class="body">
-
-    <!-- WELCOME -->
     <div id="screen-welcome" class="welcome">
       <div class="rena-circle">
-        <!-- ✏️ REEMPLAZA src CON TU ILUSTRACIÓN DE RENA -->
-       <img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Rena.JPG" alt="Rena" />
+        <img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Rena.JPG" alt="Rena" />
       </div>
       <h2>¡Woof! Soy Rena 🐾</h2>
       <p>
@@ -168,7 +147,6 @@
       <button class="btn-start" onclick="startBot()">¡Vamos! 🐾</button>
     </div>
 
-    <!-- QUESTION -->
     <div id="screen-question" class="question hidden">
       <h3 id="q-text"></h3>
       <div class="options" id="q-options"></div>
@@ -178,7 +156,6 @@
       </div>
     </div>
 
-    <!-- RESULTS -->
     <div id="screen-results" class="hidden">
       <div class="results-header">
         <div class="icon">🐾✨</div>
@@ -193,19 +170,19 @@
       <div class="cta-box">
         <div class="cta-title">¿Ya tienes tu fav? ¡Escríbele a Edith! 🐾</div>
         <div class="cta-sub">Yo ya le avisé (mentira, pero ve rápido 🐕)</div>
-        <!-- ✏️ REEMPLAZA el número de WhatsApp -->
         <a class="btn-wa" href="https://wa.me/526641263124" target="_blank" rel="noopener noreferrer">💬 Cotizar en WhatsApp</a>
       </div>
       <button class="btn-nav" style="width:100%;margin-bottom:16px" onclick="restartBot()">🔄 Volver a empezar</button>
       <div class="footer-brand">
-        <div class="logo-xs"><img src="https://drive.google.com/uc?export=view&id=1hyZd5nlpnz8jKdspGuVV1pcZzGDrc7rY" alt="Logo" /></div>
+        <div class="logo-xs">
+          <img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Pigmentos.png" alt="Logo" />
+        </div>
         <div>
           <div class="footer-name">Pigmentos Edith Bojórquez</div>
           <a class="footer-link" href="https://edithbojorquez.com/catalogo-de-mascotas#page-4" target="_blank" rel="noopener noreferrer">Ver catálogo completo</a>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
