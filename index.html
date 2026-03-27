@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pigmentos · Encuentra el regalo perfecto</title>
+  <!-- Seguridad: bloquea iframes externos, evita sniffing, activa XSS protection -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://drive.google.com https://i.ibb.co; style-src 'unsafe-inline'; script-src 'unsafe-inline';"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fdf6f0 0%, #fff0e8 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white; border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(180,120,80,0.13);
+      max-width: 480px; width: 100%; overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(90deg, #c17f5a 0%, #e0a070 100%);
+      padding: 20px 28px 16px; color: white;
+    }
+    .header-top { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+    .logo-sm {
+      width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.5); background: #c9a882; flex-shrink: 0;
+    }
+    .logo-sm img { width: 100%; height: 100%; object-fit: cover; }
+    .header-name { font-weight: 700; font-size: 17px; line-height: 1.2; }
+    .header-link { font-size: 11px; color: rgba(255,255,255,0.85); text-decoration: underline; }
+    .header-sub { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+    .progress-bar-wrap { margin-top: 12px; }
+    .progress-track { height: 6px; background: rgba(255,255,255,0.3); border-radius: 10px; overflow: hidden; }
+    .progress-fill { height: 100%; background: white; border-radius: 10px; transition: width 0.4s ease; }
+    .progress-label { font-size: 11px; opacity: 0.8; margin-top: 5px; }
+    .body { padding: 28px; }
+
+    /* WELCOME */
+    .welcome { text-align: center; }
+    .rena-circle {
+      width: 110px; height: 110px; border-radius: 50%; overflow: hidden;
+      margin: 0 auto 16px; box-shadow: 0 4px 16px rgba(193,127,90,0.25);
+      border: 3px solid #f0d8c0;
+    }
+    .rena-circle img { width: 100%; height: 100%; object-fit: cover; }
+    .welcome h2 { font-size: 19px; color: #7a4a2a; margin-bottom: 8px; font-weight: 700; }
+    .welcome p { color: #a07050; font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
+    .btn-start {
+      background: linear-gradient(90deg, #c17f5a, #e0a070);
+      color: white; border: none; border-radius: 50px;
+      padding: 14px 36px; font-size: 15px; font-weight: 700;
+      cursor: pointer; box-shadow: 0 4px 16px rgba(193,127,90,0.3);
+    }
+
+    /* QUESTION */
+    .question h3 { color: #5a2a0a; font-size: 17px; margin-bottom: 20px; line-height: 1.4; font-weight: 700; }
+    .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .option-btn {
+      background: #fdf6f0; color: #7a4a2a;
+      border: 2px solid #f0d8c0; border-radius: 14px;
+      padding: 14px 18px; font-size: 14px; font-weight: 500;
+      cursor: pointer; text-align: left; transition: all 0.15s;
+      font-family: inherit;
+    }
+    .option-btn:hover { background: #fde8d8; border-color: #c17f5a; }
+    .option-btn.selected { background: linear-gradient(90deg,#c17f5a,#e0a070); color: white; border-color: #c17f5a; }
+    .nav-btns { display: flex; gap: 8px; }
+    .btn-nav {
+      flex: 1; background: transparent; border: 2px solid #f0d8c0;
+      border-radius: 50px; color: #a07050; padding: 10px;
+      font-size: 13px; cursor: pointer; font-weight: 600; font-family: inherit;
+    }
+    .btn-nav:hover { background: #fdf6f0; }
+
+    /* RESULTS */
+    .results-header { text-align: center; margin-bottom: 20px; }
+    .results-header .icon { font-size: 32px; margin-bottom: 6px; }
+    .results-header h3 { color: #5a2a0a; font-size: 18px; margin-bottom: 6px; font-weight: 700; }
+    .results-header p { color: #a07050; font-size: 13px; }
+    .product-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .product-card {
+      border: 2px solid #f0d8c0; border-radius: 16px;
+      padding: 16px; position: relative;
+    }
+    .product-card.top { background: linear-gradient(135deg,#fff8f3,#fde8d8); border-color: #c17f5a; }
+    .product-card.other { background: #fdf8f5; }
+    .badge {
+      position: absolute; top: -10px; left: 16px;
+      background: #c17f5a; color: white; font-size: 10px;
+      font-weight: 800; border-radius: 20px; padding: 3px 10px;
+    }
+    .product-inner { display: flex; align-items: flex-start; gap: 12px; }
+    .product-emoji { font-size: 28px; }
+    .product-name { font-weight: 700; color: #5a2a0a; font-size: 15px; }
+    .product-desc { color: #a07050; font-size: 12px; margin-top: 4px; line-height: 1.5; }
+    .product-price { font-weight: 800; color: #c17f5a; font-size: 15px; margin-top: 8px; }
+    .notes-box {
+      background: #fdf6f0; border: 1px solid #f0d8c0; border-radius: 12px;
+      padding: 12px 14px; margin-bottom: 14px; font-size: 12px;
+      color: #7a4a2a; line-height: 1.7;
+    }
+    .notes-box div + div { margin-top: 4px; }
+    .cta-box {
+      background: #fde8d8; border-radius: 14px;
+      padding: 14px 16px; text-align: center; margin-bottom: 16px;
+    }
+    .cta-box .cta-title { font-size: 13px; color: #7a4a2a; font-weight: 600; }
+    .cta-box .cta-sub { font-size: 12px; color: #a07050; margin-top: 4px; }
+    .btn-wa {
+      display: inline-block; margin-top: 10px;
+      background: #25D366; color: white; border-radius: 50px;
+      padding: 10px 24px; font-size: 13px; font-weight: 700;
+      text-decoration: none; box-shadow: 0 3px 12px rgba(37,211,102,0.3);
+    }
+    .footer-brand {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding-top: 12px; border-top: 1px solid #f0d8c0;
+    }
+    .logo-xs { width: 32px; height: 32px; border-radius: 50%; overflow: hidden; background: #c9a882; }
+    .logo-xs img { width: 100%; height: 100%; object-fit: cover; }
+    .footer-name { font-size: 12px; font-weight: 700; color: #7a4a2a; }
+    .footer-link { font-size: 11px; color: #c17f5a; text-decoration: underline; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="logo-sm">
+        <!-- ✏️ REEMPLAZA src CON TU URL DE LOGO -->
+        <img src="https://drive.google.com/uc?export=view&id=1hyZd5nlpnz8jKdspGuVV1pcZzGDrc7rY" alt="Pigmentos logo" />
+      </div>
+      <div>
+        <div class="header-name">Pigmentos Edith Bojórquez</div>
+        <a class="header-link" href="https://edithbojorquez.com/catalogo-de-mascotas#page-4" target="_blank" rel="noopener noreferrer">edithbojorquez.com</a>
+      </div>
+    </div>
+    <div class="header-sub">Encuentra el regalo perfecto 🐾</div>
+    <div class="progress-bar-wrap hidden" id="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      <div class="progress-label" id="progress-label"></div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- WELCOME -->
+    <div id="screen-welcome" class="welcome">
+      <div class="rena-circle">
+        <!-- ✏️ REEMPLAZA src CON TU ILUSTRACIÓN DE RENA -->
+        <img src="https://drive.google.com/uc?export=view&id=1xGWL5WKq_HpT5vpSd9muh89P1CYLeAdM" alt="Rena" />
+      </div>
+      <h2>¡Woof! Soy Rena 🐾</h2>
+      <p>
+        Musa y CEO de @pigmentos.pet.<br/>
+        Edith me dejó el bot mientras ella pinta 🎨...<br/>
+        Contéstame unas preguntas y yo te digo cuál es el producto perfecto para regalar 👀✨<br/>
+        <em>(No muerdo, lo prometo.)</em>
+      </p>
+      <button class="btn-start" onclick="startBot()">¡Vamos! 🐾</button>
+    </div>
+
+    <!-- QUESTION -->
+    <div id="screen-question" class="question hidden">
+      <h3 id="q-text"></h3>
+      <div class="options" id="q-options"></div>
+      <div class="nav-btns">
+        <button class="btn-nav hidden" id="btn-back" onclick="goBack()">← Regresar</button>
+        <button class="btn-nav" onclick="restartBot()">🔄 Empezar de nuevo</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="screen-results" class="hidden">
+      <div class="results-header">
+        <div class="icon">🐾✨</div>
+        <h3>¡Encontré los ideales!</h3>
+        <p>Mis recomendaciones de Rena para ti 👇</p>
+      </div>
+      <div class="product-list" id="product-list"></div>
+      <div class="notes-box">
+        <div>🐾 <strong>Precios considerando el retrato de 1 mascota.</strong> Si quieres agregar más mascotas, tiene un costo adicional.</div>
+        <div>💛 <strong>Para apartar tu producto se requiere el 50% del total del pedido.</strong></div>
+      </div>
+      <div class="cta-box">
+        <div class="cta-title">¿Ya tienes tu fav? ¡Escríbele a Edith! 🐾</div>
+        <div class="cta-sub">Yo ya le avisé (mentira, pero ve rápido 🐕)</div>
+        <!-- ✏️ REEMPLAZA el número de WhatsApp -->
+        <a class="btn-wa" href="https://wa.me/526641234567" target="_blank" rel="noopener noreferrer">💬 Cotizar en WhatsApp</a>
+      </div>
+      <button class="btn-nav" style="width:100%;margin-bottom:16px" onclick="restartBot()">🔄 Volver a empezar</button>
+      <div class="footer-brand">
+        <div class="logo-xs"><img src="https://drive.google.com/uc?export=view&id=1hyZd5nlpnz8jKdspGuVV1pcZzGDrc7rY" alt="Logo" /></div>
+        <div>
+          <div class="footer-name">Pigmentos Edith Bojórquez</div>
+          <a class="footer-link" href="https://edithbojorquez.com/catalogo-de-mascotas#page-4" target="_blank" rel="noopener noreferrer">Ver catálogo completo</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const currentMonth = new Date().getMonth() + 1;
+  const isEsferasSeason = currentMonth >= 10 && currentMonth <= 12;
+
+  const ALL_PRODUCTS = [
+    { id:"postal", name:"Postal Ilustrada", price:"$50", desc:"Una postal con ilustración de tu mascota, perfecta como detalle adicional.", emoji:"💌", tags:{economic:3,small:3,emotional:1,practical:0,decorative:1,wearable:0,art:1,digital:0,cause:0} },
+    { id:"placa", name:"Placa Personalizada", price:"$130", desc:"Placa con el nombre de tu mascota, ideal para que la lleve siempre.", emoji:"🏷️", forPet:true },
+    { id:"placa_nfc", name:"Placa NFC", price:"$250", desc:"Placa tecnológica de 2.8cm con información oculta que se activa con un tap.", emoji:"📡", forPet:true },
+    { id:"tote_bag", name:"Tote Bag", price:"$650", desc:"Bolsa de tela con el retrato de tu mascota, lavable y lista para usar.", emoji:"👜", tags:{economic:0,small:1,emotional:2,practical:3,decorative:1,wearable:2,art:1,digital:0,cause:0} },
+    { id:"portavasos", name:"Portavasos Caricatura", price:"$390", desc:"Set de 5 piezas con retratos tipo caricatura en 3 diseños diferentes.", emoji:"🫗", tags:{economic:1,small:1,emotional:2,practical:2,decorative:3,wearable:0,art:2,digital:0,cause:0} },
+    { id:"kit_digital_cari", name:"Kit Digital Caricatura", price:"$530", desc:"Ilustración caricatura + stickers impresos + marco portarretrato 20x25cm.", emoji:"🖼️", tags:{economic:1,small:1,emotional:3,practical:1,decorative:3,wearable:0,art:3,digital:2,cause:0} },
+    ...(isEsferasSeason ? [{ id:"esferas", name:"Esferas Navideñas", price:"$350 (8cm) / $400 (11cm)", desc:"Esferas con el retrato de tu mascota. ¡Perfectas para esta temporada!", emoji:"🎄", tags:{economic:1,small:2,emotional:3,practical:0,decorative:3,wearable:0,art:2,digital:0,cause:0} }] : []),
+    { id:"llavero", name:"Llavero Acrílico", price:"$400", desc:"Llavero con el retrato de tu mascota, elige el fondo que quieras.", emoji:"🔑", tags:{economic:1,small:3,emotional:2,practical:2,decorative:1,wearable:1,art:1,digital:0,cause:0} },
+    { id:"tarjeta_regalo", name:"Tarjeta de Regalo", price:"$400 / $650 / $850 / $1,000", desc:"Para que quien recibe elija su producto favorito del catálogo.", emoji:"🎁", tags:{economic:1,small:2,emotional:2,practical:1,decorative:0,wearable:0,art:0,digital:0,cause:0} },
+    { id:"libreta", name:"Libreta Caricatura", price:"$450", desc:"Cuaderno A5 15x22cm, 90 hojas, con retrato caricatura, stickers y separador.", emoji:"📓", tags:{economic:1,small:1,emotional:2,practical:3,decorative:2,wearable:0,art:2,digital:0,cause:0} },
+    { id:"blind_box", name:"Blind Box – Adopta un Pigmento", price:"$480", desc:"1 de 11 personalidades sorpresa + empaque casita + certificado de adopción. Apoya refugios.", emoji:"🎀", tags:{economic:1,small:2,emotional:3,practical:0,decorative:2,wearable:0,art:2,digital:0,cause:3} },
+    { id:"taza_clasica", name:"Taza Clásica", price:"$550", desc:"Taza con el retrato de tu mascota, para el café de cada mañana.", emoji:"☕", tags:{economic:1,small:1,emotional:2,practical:3,decorative:1,wearable:0,art:1,digital:0,cause:0} },
+    { id:"taza_jumbo", name:"Taza Jumbo", price:"$600", desc:"Taza grande con retrato de tu mascota.", emoji:"🫖", tags:{economic:0,small:0,emotional:2,practical:3,decorative:1,wearable:0,art:1,digital:0,cause:0} },
+    { id:"funda", name:"Funda de Celular", price:"$600", desc:"Funda personalizada con el retrato de tu mascota.", emoji:"📱", tags:{economic:0,small:1,emotional:2,practical:3,decorative:1,wearable:1,art:1,digital:0,cause:0} },
+    { id:"acuarela", name:"Acuarela Original", price:"$350 sin marco / $500 con marco", desc:"Retrato pintado a mano en acuarela, con o sin marco. Una pieza única.", emoji:"🎨", tags:{economic:1,small:0,emotional:3,practical:0,decorative:3,wearable:0,art:3,digital:0,cause:0} },
+    { id:"kit_digital_det", name:"Kit Digital Detallado", price:"$640", desc:"Ilustración detallada tipo realista + stickers + portarretrato + todo impreso.", emoji:"✏️", tags:{economic:0,small:0,emotional:3,practical:1,decorative:3,wearable:0,art:3,digital:2,cause:0} },
+    { id:"lienzo", name:"Lienzo Pintado", price:"$450–$950", desc:"Retrato pintado sobre lienzo. 20x20 ($450), 20x25 ($675), 20x30 ($850), 30x30 ($950).", emoji:"🖼️", tags:{economic:0,small:0,emotional:3,practical:0,decorative:3,wearable:0,art:3,digital:0,cause:0} },
+    { id:"vaso_bambu", name:"Vaso de Bambú", price:"$650", desc:"Vaso de vidrio 500ml con tapa de bambú y el retrato de tu mascota.", emoji:"🥤", tags:{economic:0,small:0,emotional:2,practical:3,decorative:2,wearable:0,art:1,digital:0,cause:0} },
+    { id:"termo_tumbler", name:"Termo Tumbler Acrílico", price:"$750", desc:"Termo tumbler acrílico con retrato de tu mascota.", emoji:"🧋", tags:{economic:0,small:0,emotional:2,practical:3,decorative:1,wearable:0,art:1,digital:0,cause:0} },
+    { id:"termo_887", name:"Termo Acero 887ml", price:"$850", desc:"Termo de acero 887ml. Incluye popotes y limpiapopotes.", emoji:"🥤", tags:{economic:0,small:0,emotional:2,practical:3,decorative:1,wearable:0,art:1,digital:0,cause:0} },
+    { id:"termo_1200", name:"Termo Acero 1.2Lt", price:"$850", desc:"Termo de acero 1.2Lt. Incluye popote de plástico.", emoji:"🥤", tags:{economic:0,small:0,emotional:2,practical:3,decorative:1,wearable:0,art:1,digital:0,cause:0} },
+    { id:"playera", name:"Playera Personalizada", price:"$650", desc:"Playera 100% algodón negra con el retrato de tu mascota.", emoji:"👕", tags:{economic:0,small:0,emotional:2,practical:2,decorative:1,wearable:3,art:2,digital:0,cause:0} },
+    { id:"hoodie", name:"Hoodie Personalizado", price:"$950", desc:"Sudadera con el retrato de tu mascota, lavable sin problema.", emoji:"🧥", tags:{economic:0,small:0,emotional:2,practical:2,decorative:0,wearable:3,art:2,digital:0,cause:0} },
+    { id:"gorra", name:"Gorra Personalizada", price:"$650", desc:"Gorra negra con el retrato de tu mascota, lavable.", emoji:"🧢", tags:{economic:0,small:0,emotional:2,practical:2,decorative:0,wearable:3,art:1,digital:0,cause:0} },
+    { id:"cuadro_escritorio", name:"Cuadro de Escritorio", price:"$560", desc:"Retrato de tu mascota en un cuadro especial para tu escritorio.", emoji:"🖼️", tags:{economic:0,small:0,emotional:3,practical:1,decorative:3,wearable:0,art:3,digital:0,cause:0} },
+  ];
+
+  const PERSON_PRODUCTS = ALL_PRODUCTS.filter(p => !p.forPet);
+
+  const QUESTIONS = [
+    { id:"q1", text:"¡Woof! Primera pregunta 🐾 ¿Este regalo es para…?", options:[{label:"🧍 Una persona (lo recibirá una persona)",value:"person"},{label:"🐾 Una mascota (es un accesorio para la mascota)",value:"pet"}] },
+    { id:"q2", text:"Mmm… 👀 ¿Qué vibra buscas para el regalo?", options:[{label:"⚙️ Algo práctico, que se use",value:"practical"},{label:"💖 Algo emocional, que se sienta",value:"emotional"}] },
+    { id:"q3", text:"Ojo de buen cubero 🐕 Si tuvieras que describir a esa persona en una palabra, sería…", options:[{label:"✨ Detallista",value:"detallista"},{label:"🔧 Práctica",value:"practica"},{label:"💛 Sentimental",value:"sentimental"},{label:"🎨 Creativa",value:"creativa"}] },
+    { id:"q4", text:"Importante (yo soy experta en recibir regalos 🐾) Cuando recibe un regalo, normalmente…", options:[{label:"💬 Se fija mucho en el significado",value:"meaning"},{label:"👀 Le gusta que sea bonito",value:"pretty"},{label:"🙌 Prefiere que sea útil",value:"useful"},{label:"🎉 Disfruta la sorpresa, sin pensarlo tanto",value:"surprise"}] },
+    { id:"q5", text:"¿Qué tipo de regalos se recuerdan más entre ustedes? 🤔", options:[{label:"📖 Los que cuentan una historia",value:"story"},{label:"☀️ Los que se usan en el día a día",value:"daily"},{label:"🏠 Los que decoran o se exhiben",value:"decor"},{label:"🎀 Los detalles pequeños pero bien pensados",value:"small"}] },
+    { id:"q6", text:"¿Para qué ocasión estás regalando? 🎊", options:[{label:"🎂 Cumpleaños",value:"birthday"},{label:"💐 Una fecha especial (aniversario, homenaje, despedida)",value:"special"},{label:"🌿 No hay fecha, solo porque sí",value:"justbecause"}] },
+    { id:"q7", text:"Ya casi… 🐾 ¿Con qué presupuesto te sientes más cómodx?", options:[{label:"🌱 Sencillo (menos de $500)",value:"low"},{label:"🌿 Intermedio ($500–$700)",value:"mid"},{label:"🌳 Más especial ($700+)",value:"high"}] },
+    { id:"q8", text:"Última, lo juro 🐕 ¿Para cuándo necesitas el regalo?", options:[{label:"🕊️ Sin prisa",value:"nohurry"},{label:"📅 Para una fecha específica",value:"date"},{label:"⚡ Lo antes posible",value:"asap"}] },
+  ];
+
+  const PET_Q = { id:"qpet", text:"¡Uy, un regalo para otra mascota! 🐾 ¿Qué buscas en su accesorio?", options:[{label:"🎨 Algo bonito, que se vea lindo",value:"pretty"},{label:"📋 Que tenga información importante (nombre, datos de contacto…)",value:"info"}] };
+
+  let step = -1, answers = {}, isPetFlow = false;
+
+  function show(id) {
+    ['screen-welcome','screen-question','screen-results'].forEach(s => document.getElementById(s).classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function updateProgress() {
+    const wrap = document.getElementById('progress-wrap');
+    if (step < 0) { wrap.classList.add('hidden'); return; }
+    wrap.classList.remove('hidden');
+    const total = answers.q1 === 'pet' ? 2 : QUESTIONS.length;
+    const current = isPetFlow ? 2 : step + 1;
+    document.getElementById('progress-fill').style.width = ((current / total) * 100) + '%';
+    document.getElementById('progress-label').textContent = `Pregunta ${current} de ${total}`;
+  }
+
+  function renderQuestion(q) {
+    document.getElementById('q-text').textContent = q.text;
+    const opts = document.getElementById('q-options');
+    opts.innerHTML = '';
+    q.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.textContent = opt.label;
+      btn.onclick = () => handleAnswer(opt.value, btn);
+      opts.appendChild(btn);
+    });
+    const backBtn = document.getElementById('btn-back');
+    (step > 0 || isPetFlow) ? backBtn.classList.remove('hidden') : backBtn.classList.add('hidden');
+    show('screen-question');
+    updateProgress();
+  }
+
+  function handleAnswer(value, btn) {
+    btn.classList.add('selected');
+    setTimeout(() => {
+      if (isPetFlow) {
+        const petResults = value === 'pretty'
+          ? [ALL_PRODUCTS.find(p=>p.id==='placa'), ALL_PRODUCTS.find(p=>p.id==='placa_nfc')]
+          : [ALL_PRODUCTS.find(p=>p.id==='placa_nfc'), ALL_PRODUCTS.find(p=>p.id==='placa')];
+        showResults(petResults); isPetFlow = false; return;
+      }
+      const q = QUESTIONS[step];
+      answers[q.id] = value;
+      if (q.id === 'q1' && value === 'pet') { isPetFlow = true; renderQuestion(PET_Q); return; }
+      if (step + 1 < QUESTIONS.length) { step++; renderQuestion(QUESTIONS[step]); }
+      else showResults(scoreProducts());
+    }, 250);
+  }
+
+  function goBack() {
+    if (isPetFlow) { isPetFlow = false; step = 0; renderQuestion(QUESTIONS[0]); return; }
+    if (step > 0) { step--; renderQuestion(QUESTIONS[step]); }
+  }
+
+  function startBot() { step = 0; renderQuestion(QUESTIONS[0]); }
+
+  function restartBot() { step = -1; answers = {}; isPetFlow = false; show('screen-welcome'); document.getElementById('progress-wrap').classList.add('hidden'); }
+
+  function scoreProducts() {
+    const scores = {};
+    PERSON_PRODUCTS.forEach(p => scores[p.id] = 0);
+    const {q2,q3,q4,q5,q6,q7,q8} = answers;
+    const add = (ids, n) => ids.forEach(id => { if(scores[id]!==undefined) scores[id]+=n; });
+    if(q2==='practical') add(['funda','termo_tumbler','termo_887','termo_1200','vaso_bambu','taza_clasica','taza_jumbo','libreta','tote_bag'],2);
+    else { add(['acuarela','kit_digital_det','kit_digital_cari','lienzo','cuadro_escritorio','portavasos'],2); if(isEsferasSeason&&scores['esferas']!==undefined) scores['esferas']+=2; }
+    if(q3==='detallista') add(['kit_digital_det','acuarela','cuadro_escritorio','llavero','libreta'],2);
+    if(q3==='practica') add(['termo_tumbler','termo_887','funda','taza_clasica','vaso_bambu','tote_bag'],2);
+    if(q3==='sentimental'){ add(['acuarela','lienzo','cuadro_escritorio','kit_digital_cari','blind_box'],2); if(isEsferasSeason&&scores['esferas']!==undefined) scores['esferas']+=2; }
+    if(q3==='creativa') add(['kit_digital_cari','kit_digital_det','libreta','portavasos','playera','hoodie'],2);
+    if(q4==='meaning') add(['acuarela','cuadro_escritorio','lienzo','blind_box'],2);
+    if(q4==='pretty') add(['llavero','kit_digital_cari','portavasos','lienzo'],2);
+    if(q4==='useful') add(['termo_tumbler','termo_887','funda','taza_clasica','vaso_bambu','libreta','tote_bag'],2);
+    if(q4==='surprise'){ add(['blind_box','tarjeta_regalo'],3); if(isEsferasSeason&&scores['esferas']!==undefined) scores['esferas']+=2; }
+    if(q5==='story') add(['acuarela','lienzo','blind_box','cuadro_escritorio','kit_digital_det'],2);
+    if(q5==='daily') add(['termo_tumbler','termo_887','taza_clasica','funda','vaso_bambu','tote_bag'],2);
+    if(q5==='decor'){ add(['lienzo','cuadro_escritorio','portavasos','kit_digital_cari'],2); if(isEsferasSeason&&scores['esferas']!==undefined) scores['esferas']+=2; }
+    if(q5==='small') add(['postal','llavero','portavasos'],2);
+    if(q6==='birthday') add(['kit_digital_cari','libreta','llavero','taza_clasica','funda'],1);
+    if(q6==='special'){ add(['acuarela','lienzo','cuadro_escritorio','kit_digital_det'],2); if(isEsferasSeason&&scores['esferas']!==undefined) scores['esferas']+=2; }
+    if(q6==='justbecause') add(['blind_box','postal','portavasos'],1);
+    const low=['postal','portavasos','libreta','acuarela','llavero','blind_box','kit_digital_cari','cuadro_escritorio'];
+    const mid=['tarjeta_regalo','taza_clasica','taza_jumbo','funda','vaso_bambu','tote_bag','playera','gorra','kit_digital_det','lienzo'];
+    const high=['hoodie','termo_887','termo_1200','termo_tumbler','lienzo','acuarela'];
+    if(isEsferasSeason) mid.push('esferas');
+    if(q7==='low'){ add(low,3); add(high,-2); }
+    if(q7==='mid') add(mid,2);
+    if(q7==='high'){ add(high,3); add(low,-1); }
+    if(q8==='asap'){ add(['acuarela','lienzo','cuadro_escritorio','kit_digital_det'],-2); add(['postal','blind_box','tarjeta_regalo','llavero'],1); }
+    return Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([id])=>PERSON_PRODUCTS.find(p=>p.id===id));
+  }
+
+  function showResults(products) {
+    const list = document.getElementById('product-list');
+    list.innerHTML = '';
+    products.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'product-card ' + (i===0?'top':'other');
+      card.innerHTML = `
+        ${i===0?'<div class="badge">⭐ MEJOR OPCIÓN</div>':''}
+        <div class="product-inner">
+          <div class="product-emoji">${p.emoji}</div>
+          <div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-desc">${p.desc}</div>
+            <div class="product-price">${p.price} MXN</div>
+          </div>
+        </div>`;
+      list.appendChild(card);
+    });
+    show('screen-results');
+    document.getElementById('progress-wrap').classList.add('hidden');
+  }
+</script>
+</body>
+</html>
