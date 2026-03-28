@@ -119,7 +119,7 @@
 
     <div id="screen-calendar" class="hidden">
       <div class="cal-wrap">
-        <h3>¿Tienes algún sábado en mente para recoger tu pedido? 📅</h3>
+        <h3>¿Tienes algúna fecha en mente para la entrega de tu pedido? 📅</h3>
         <div class="cal-header">
           <button class="cal-nav" onclick="changeMonth(-1)">&#8249;</button>
           <span id="cal-title"></span>
@@ -143,12 +143,12 @@
       <div class="product-list" id="product-list"></div>
       <div class="notes-box">
         <div id="note-mascota">🐾 <strong>Precios considerando el retrato de 1 mascota.</strong> Si quieres agregar más mascotas, tiene un costo adicional.</div>
-        <div>💛 <strong>Para apartar tu producto se requiere el 50% del total del pedido.</strong></div>
+        <div>🤎 <strong>Para apartar tu producto se requiere el 50% del total del pedido.</strong></div>
         <div>📍 <strong>Entregas personales los sábados</strong> en Carrusel, Plaza 2000 y Viñas del Mar. También enviamos por Uber/DiDi y envíos nacionales con entrega en 4–10 días hábiles.</div>
       </div>
       <div class="cta-box">
         <div class="cta-title">¿Ya tienes tu fav? ¡Escríbele a Edith! 🐾</div>
-        <div class="cta-sub">Yo ya le avisé (mentira, pero ve rápido 🐕)</div>
+        <div class="cta-sub">Yo ya le avisé (mentira, solo ladro 🐕)</div>
         <a class="btn-wa" id="btn-whatsapp" href="#" target="_blank" rel="noopener noreferrer">💬 Cotizar en WhatsApp</a>
         <div class="cta-date hidden" id="cta-date"></div>
       </div>
@@ -184,13 +184,13 @@
   const MONTHS_ES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
   const ALL_PRODUCTS = [
-    { id:"postal", name:"Postal Ilustrada", price:"$50", desc:"Una postal con ilustración de tu mascota.", emoji:"💌", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:0,occasion_just:2,budget_low:3,budget_mid:0,budget_high:0} },
-    { id:"placa", name:"Placa Personalizada", price:"$130", desc:"Placa con el nombre de tu mascota, ideal para que la lleve siempre.", emoji:"🏷️", forPet:true },
+    { id:"postal", name:"Postal Ilustrada", price:"$50 generica / $100 personalizada", desc:"Una postal con ilustración pet.", emoji:"💌", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:0,occasion_just:2,budget_low:3,budget_mid:0,budget_high:0} },
+    { id:"placa", name:"Placa Personalizada", price:"$130", desc:"Placa con el nombre de tu mascota, de diferentes formas y tamaños.", emoji:"🏷️", forPet:true },
     { id:"placa_nfc", name:"Placa NFC", price:"$250", desc:"Placa tecnológica de 2.8cm con información oculta que se activa con un tap.", emoji:"📡", forPet:true },
     { id:"llavero", name:"Llavero Acrílico", price:"$400", desc:"Llavero con el retrato de tu mascota, elige el fondo que quieras.", emoji:"🔑", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"libreta", name:"Libreta Caricatura", price:"$450", desc:"Cuaderno A5 15x22cm, 90 hojas, con retrato caricatura, stickers y separador.", emoji:"📓", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
-    { id:"portavasos", name:"Portavasos Caricatura", price:"$390", desc:"Set de 5 piezas con retratos tipo caricatura en 3 diseños diferentes.", emoji:"🫗", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
-    { id:"kit_digital_cari", name:"Kit Digital Caricatura", price:"$530", desc:"Ilustración caricatura + stickers impresos + marco portarretrato 20x25cm.", emoji:"🖼️", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:1,budget_mid:2,budget_high:0} },
+    { id:"portavasos", name:"Portavasos Caricatura", price:"$390", desc:"Set de 3 piezas con retratos tipo caricatura en 3 diseños diferentes.", emoji:"🫗", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
+    { id:"kit_digital_cari", name:"Kit Digital Caricatura", price:"$530", desc:"Ilustración caricatura + stickers impresos + llavero con su nombre + marco portarretrato 20x25cm.", emoji:"🖼️", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:1,budget_mid:2,budget_high:0} },
     { id:"funda", name:"Funda de Celular", price:"$600", desc:"Funda personalizada con el retrato de tu mascota.", emoji:"📱", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"acuarela", name:"Acuarela Original", price:"$350 sin marco / $500 con marco", desc:"Retrato pintado a mano en acuarela, con o sin marco. Una pieza única.", emoji:"🎨", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:2,budget_mid:2,budget_high:0} },
     { id:"lienzo", name:"Lienzo Pintado", price:"$450–$950", desc:"Retrato pintado sobre lienzo. 20x20 ($450), 20x25 ($675), 20x30 ($850), 30x30 ($950).", emoji:"🖼️", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:0,budget_low:0,budget_mid:2,budget_high:2} },
@@ -199,15 +199,15 @@
     { id:"taza_clasica", name:"Taza Clásica", price:"$550", desc:"Taza con el retrato de tu mascota, para el café de cada mañana.", emoji:"☕", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"taza_jumbo", name:"Taza Jumbo", price:"$600", desc:"Taza grande con retrato de tu mascota.", emoji:"🫖", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"vaso_bambu", name:"Vaso de Bambú", price:"$650", desc:"Vaso de vidrio 500ml con tapa de bambú y el retrato de tu mascota.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
-    { id:"playera", name:"Playera Personalizada", price:"$650", desc:"Playera 100% algodón negra con el retrato de tu mascota.", emoji:"👕", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
+    { id:"playera", name:"Playera Personalizada", price:"$650", desc:"Playera 100% algodón negra con el retrato de tu mascota, lavable y lista para usar.", emoji:"👕", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"hoodie", name:"Hoodie Personalizado", price:"$950", desc:"Sudadera con el retrato de tu mascota, lavable sin problema.", emoji:"🧥", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:3} },
     { id:"tote_bag", name:"Tote Bag", price:"$650", desc:"Bolsa de tela con el retrato de tu mascota, lavable y lista para usar.", emoji:"👜", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"termo_tumbler", name:"Termo Tumbler Acrílico", price:"$750", desc:"Termo tumbler acrílico con retrato de tu mascota.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:2} },
     { id:"termo_887", name:"Termo Acero 887ml", price:"$850", desc:"Termo de acero 887ml. Incluye popotes y limpiapopotes.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:2} },
     { id:"termo_1200", name:"Termo Acero 1.2Lt", price:"$850", desc:"Termo de acero 1.2Lt. Incluye popote de plástico.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:2} },
     { id:"gorra", name:"Gorra Personalizada", price:"$650", desc:"Gorra negra con el retrato de tu mascota, lavable.", emoji:"🧢", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
-    { id:"cuadro_escritorio", name:"Cuadro de Escritorio", price:"$560", desc:"Retrato de tu mascota en un cuadro especial para tu escritorio.", emoji:"🖼️", speed:"slow", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
-    { id:"kit_digital_det", name:"Kit Digital Detallado", price:"$640", desc:"Ilustración detallada tipo realista + stickers + portarretrato + todo impreso.", emoji:"✏️", speed:"slow", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
+    { id:"cuadro_escritorio", name:"Cuadro de Escritorio", price:"$560", desc:"Retrato de tu mascota en un cuadro especial para tu escritorio 14.5 x 14.5 cm.", emoji:"🖼️", speed:"slow", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
+    { id:"kit_digital_det", name:"Kit Digital Detallado", price:"$640", desc:"Ilustración detallada tipo realista + stickers + llavero con su nombre + portarretrato 20x25cm.", emoji:"✏️", speed:"slow", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     ...(isEsferasSeason ? [{ id:"esferas", name:"Esferas Navideñas", price:"$350 (8cm) / $400 (11cm)", desc:"Esferas con el retrato de tu mascota. ¡Perfectas para esta temporada!", emoji:"🎄", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:0,occasion_special:2,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} }] : []),
   ];
 
