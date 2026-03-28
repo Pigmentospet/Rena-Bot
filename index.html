@@ -38,7 +38,6 @@
     .nav-btns { display: flex; gap: 8px; }
     .btn-nav { flex: 1; background: transparent; border: 2px solid #f0d8c0; border-radius: 50px; color: #a07050; padding: 10px; font-size: 13px; cursor: pointer; font-weight: 600; font-family: inherit; }
     .btn-nav:hover { background: #fdf6f0; }
-    /* CALENDAR */
     .cal-wrap h3 { color: #5a2a0a; font-size: 17px; margin-bottom: 16px; line-height: 1.4; font-weight: 700; }
     .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
     .cal-header span { font-weight: 700; color: #7a4a2a; font-size: 15px; }
@@ -52,7 +51,6 @@
     .cal-day.past { opacity: 0.35; pointer-events: none; }
     .cal-skip { text-align: center; margin-bottom: 16px; }
     .cal-skip button { background: none; border: none; color: #a07050; font-size: 12px; cursor: pointer; text-decoration: underline; font-family: inherit; }
-    /* RESULTS */
     .results-header { text-align: center; margin-bottom: 20px; }
     .results-header .icon { font-size: 32px; margin-bottom: 6px; }
     .results-header h3 { color: #5a2a0a; font-size: 18px; margin-bottom: 6px; font-weight: 700; }
@@ -80,7 +78,7 @@
     .footer-name { font-size: 12px; font-weight: 700; color: #7a4a2a; }
     .footer-link { font-size: 11px; color: #c17f5a; text-decoration: underline; }
     .social-row { display: flex; justify-content: center; gap: 14px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #f0d8c0; }
-    .social-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #fdf6f0; border: 2px solid #f0d8c0; text-decoration: none; transition: all 0.15s; }
+    .social-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #fdf6f0; border: 2px solid #f0d8c0; text-decoration: none; }
     .social-btn:hover { background: #fde8d8; border-color: #c17f5a; }
     .hidden { display: none; }
   </style>
@@ -89,7 +87,7 @@
 <div class="card">
   <div class="header">
     <div class="header-top">
-      <div class="logo-sm"><img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Pigmentos.png" alt="Pigmentos" /></div>
+      <div class="logo-sm"><img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Pigmentos.png" alt="Pigmentos"/></div>
       <div>
         <div class="header-name">Pigmentos Edith Bojórquez</div>
         <a class="header-link" href="https://edithbojorquez.com" target="_blank" rel="noopener noreferrer">edithbojorquez.com</a>
@@ -103,15 +101,13 @@
   </div>
 
   <div class="body">
-    <!-- WELCOME -->
     <div id="screen-welcome" class="welcome">
-      <div class="rena-circle"><img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Rena.JPG" alt="Rena" /></div>
+      <div class="rena-circle"><img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Rena.JPG" alt="Rena"/></div>
       <h2>¡Woof! Soy Rena 🐾</h2>
       <p>Musa y CEO de @pigmentos.pet.<br/>Edith me dejó el bot mientras ella pinta 🎨...<br/>Contéstame unas preguntas y yo te digo cuál es el producto perfecto para regalar 👀✨<br/><em>(No muerdo, lo prometo.)</em></p>
       <button class="btn-start" onclick="startBot()">¡Vamos! 🐾</button>
     </div>
 
-    <!-- QUESTION -->
     <div id="screen-question" class="question hidden">
       <h3 id="q-text"></h3>
       <div class="options" id="q-options"></div>
@@ -121,7 +117,6 @@
       </div>
     </div>
 
-    <!-- CALENDAR -->
     <div id="screen-calendar" class="hidden">
       <div class="cal-wrap">
         <h3>¿Tienes algún sábado en mente para recoger tu pedido? 📅</h3>
@@ -139,7 +134,6 @@
       </div>
     </div>
 
-    <!-- RESULTS -->
     <div id="screen-results" class="hidden">
       <div class="results-header">
         <div class="icon">🐾✨</div>
@@ -160,7 +154,7 @@
       </div>
       <button class="btn-nav" style="width:100%;margin-bottom:16px" onclick="restartBot()">🔄 Volver a empezar</button>
       <div class="footer-brand">
-        <div class="logo-xs"><img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Pigmentos.png" alt="Logo" /></div>
+        <div class="logo-xs"><img src="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Pigmentos.png" alt="Logo"/></div>
         <div>
           <div class="footer-name">Pigmentos Edith Bojórquez</div>
           <a class="footer-link" href="https://edithbojorquez.com/catalogo-de-mascotas" target="_blank" rel="noopener noreferrer">Ver catálogo completo</a>
@@ -190,11 +184,11 @@
   const MONTHS_ES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
   const ALL_PRODUCTS = [
-    { id:"postal", name:"Postal Ilustrada", price:"$50", desc:"Una postal con ilustración de tu mascota, perfecta como detalle adicional.", emoji:"💌", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:0,occasion_just:2,budget_low:3,budget_mid:0,budget_high:0} },
+    { id:"postal", name:"Postal Ilustrada", price:"$50", desc:"Una postal con ilustración de tu mascota.", emoji:"💌", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:0,occasion_just:2,budget_low:3,budget_mid:0,budget_high:0} },
     { id:"placa", name:"Placa Personalizada", price:"$130", desc:"Placa con el nombre de tu mascota, ideal para que la lleve siempre.", emoji:"🏷️", forPet:true },
     { id:"placa_nfc", name:"Placa NFC", price:"$250", desc:"Placa tecnológica de 2.8cm con información oculta que se activa con un tap.", emoji:"📡", forPet:true },
     { id:"llavero", name:"Llavero Acrílico", price:"$400", desc:"Llavero con el retrato de tu mascota, elige el fondo que quieras.", emoji:"🔑", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
-    { id:"libreta", name:"Libreta Caricatura", price:"$450", desc:"Cuaderno A5 15x22cm, 90 hojas, con retrato caricatura, stickers y separador.", emoji:"📓", speed:"normal", tags:{practical:3,emotional:1,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
+    { id:"libreta", name:"Libreta Caricatura", price:"$450", desc:"Cuaderno A5 15x22cm, 90 hojas, con retrato caricatura, stickers y separador.", emoji:"📓", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"portavasos", name:"Portavasos Caricatura", price:"$390", desc:"Set de 5 piezas con retratos tipo caricatura en 3 diseños diferentes.", emoji:"🫗", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"kit_digital_cari", name:"Kit Digital Caricatura", price:"$530", desc:"Ilustración caricatura + stickers impresos + marco portarretrato 20x25cm.", emoji:"🖼️", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:1,budget_mid:2,budget_high:0} },
     { id:"funda", name:"Funda de Celular", price:"$600", desc:"Funda personalizada con el retrato de tu mascota.", emoji:"📱", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
@@ -217,7 +211,7 @@
     ...(isEsferasSeason ? [{ id:"esferas", name:"Esferas Navideñas", price:"$350 (8cm) / $400 (11cm)", desc:"Esferas con el retrato de tu mascota. ¡Perfectas para esta temporada!", emoji:"🎄", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:0,occasion_special:2,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} }] : []),
   ];
 
-  const PERSON_PRODUCTS = ALL_PRODUCTS.filter(p => !p.forPet);
+  const PERSON_PRODUCTS = ALL_PRODUCTS.filter(p => !p.forPet && p.id !== 'tarjeta_regalo');
 
   const QUESTIONS = [
     { id:"q1", text:"¡Woof! Primera pregunta 🐾 ¿Este regalo es para…?", options:[{label:"🧍 Una persona (lo recibirá una persona)",value:"person"},{label:"🐾 Una mascota (es un accesorio para la mascota)",value:"pet"}] },
@@ -230,165 +224,172 @@
   ];
 
   const PET_Q = { id:"qpet", text:"¡Uy, un regalo para otra mascota! 🐾 ¿Qué buscas en su accesorio?", options:[{label:"🎨 Algo bonito, que se vea lindo",value:"pretty"},{label:"📋 Que tenga información importante (nombre, datos de contacto…)",value:"info"}] };
-  const PET_CAL_Q = "pet_cal";
 
-  let step=-1, answers={}, isPetFlow=false, isPetCal=false, petResults=null, deliveryDate=null, topProduct=null;
+  let step=-1, answers={}, isPetFlow=false, isPetCal=false, petResultsData=null, deliveryDate=null, topProduct=null;
   let calYear, calMonth, chosenDate=null;
 
   function show(id) {
-    ['screen-welcome','screen-question','screen-calendar','screen-results'].forEach(s=>document.getElementById(s).classList.add('hidden'));
+    ['screen-welcome','screen-question','screen-calendar','screen-results'].forEach(s => document.getElementById(s).classList.add('hidden'));
     document.getElementById(id).classList.remove('hidden');
   }
 
   function updateProgress() {
-    const wrap=document.getElementById('progress-wrap');
-    if(step<0){wrap.classList.add('hidden');return;}
+    const wrap = document.getElementById('progress-wrap');
+    if (step < 0) { wrap.classList.add('hidden'); return; }
     wrap.classList.remove('hidden');
-    const total=answers.q1==='pet'?2:QUESTIONS.length;
-    const cur=isPetFlow?2:step+1;
-    document.getElementById('progress-fill').style.width=((cur/total)*100)+'%';
-    document.getElementById('progress-label').textContent=`Pregunta ${cur} de ${total}`;
+    const total = answers.q1 === 'pet' ? 2 : QUESTIONS.length;
+    const cur = isPetFlow ? 2 : step + 1;
+    document.getElementById('progress-fill').style.width = ((cur / total) * 100) + '%';
+    document.getElementById('progress-label').textContent = `Pregunta ${cur} de ${total}`;
   }
 
   function renderQuestion(q) {
-    document.getElementById('q-text').textContent=q.text;
-    const opts=document.getElementById('q-options'); opts.innerHTML='';
-    q.options.forEach(opt=>{
-      const btn=document.createElement('button'); btn.className='option-btn'; btn.textContent=opt.label;
-      btn.onclick=()=>handleAnswer(opt.value,btn); opts.appendChild(btn);
+    document.getElementById('q-text').textContent = q.text;
+    const opts = document.getElementById('q-options');
+    opts.innerHTML = '';
+    q.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.textContent = opt.label;
+      btn.onclick = () => handleAnswer(opt.value, btn);
+      opts.appendChild(btn);
     });
-    document.getElementById('btn-back').classList.toggle('hidden',!(step>0||isPetFlow));
-    show('screen-question'); updateProgress();
+    document.getElementById('btn-back').classList.toggle('hidden', !(step > 0 || isPetFlow));
+    show('screen-question');
+    updateProgress();
   }
 
-  // CALENDAR
-  function initCal(){const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth();renderCal();}
-
-  function changeMonth(dir){
-    calMonth+=dir;
-    if(calMonth>11){calMonth=0;calYear++;}
-    if(calMonth<0){calMonth=11;calYear--;}
-    renderCal();
-  }
-
-  function handleAnswer(value,btn) {
+  function handleAnswer(value, btn) {
     btn.classList.add('selected');
-    setTimeout(()=>{
-      if(isPetFlow){
-        petResults=value==='pretty'
-          ?[ALL_PRODUCTS.find(p=>p.id==='placa'),ALL_PRODUCTS.find(p=>p.id==='placa_nfc')]
-          :[ALL_PRODUCTS.find(p=>p.id==='placa_nfc'),ALL_PRODUCTS.find(p=>p.id==='placa')];
-        isPetFlow=false; isPetCal=true; initCal(); show('screen-calendar');
-        document.getElementById('progress-wrap').classList.add('hidden'); return;
+    setTimeout(() => {
+      if (isPetFlow) {
+        petResultsData = value === 'pretty'
+          ? [ALL_PRODUCTS.find(p => p.id === 'placa'), ALL_PRODUCTS.find(p => p.id === 'placa_nfc')]
+          : [ALL_PRODUCTS.find(p => p.id === 'placa_nfc'), ALL_PRODUCTS.find(p => p.id === 'placa')];
+        isPetFlow = false; isPetCal = true;
+        initCal(); show('screen-calendar');
+        document.getElementById('progress-wrap').classList.add('hidden');
+        return;
       }
-      const q=QUESTIONS[step]; answers[q.id]=value;
-      if(q.id==='q1'&&value==='pet'){isPetFlow=true;renderQuestion(PET_Q);return;}
-      if(q.id==='q7'&&value==='date'){initCal();show('screen-calendar');document.getElementById('progress-wrap').classList.add('hidden');return;}
-      if(step+1<QUESTIONS.length){step++;renderQuestion(QUESTIONS[step]);}
-      else showResults(scoreProducts(),false);
-    },250);
-  }
-    },250);
+      const q = QUESTIONS[step];
+      answers[q.id] = value;
+      if (q.id === 'q1' && value === 'pet') { isPetFlow = true; renderQuestion(PET_Q); return; }
+      if (q.id === 'q7' && value === 'date') { initCal(); show('screen-calendar'); document.getElementById('progress-wrap').classList.add('hidden'); return; }
+      if (step + 1 < QUESTIONS.length) { step++; renderQuestion(QUESTIONS[step]); }
+      else showResults(scoreProducts(), false);
+    }, 250);
   }
 
   function goBack() {
-    if(isPetFlow){isPetFlow=false;step=0;renderQuestion(QUESTIONS[0]);return;}
-    if(step>0){step--;renderQuestion(QUESTIONS[step]);}
+    if (isPetFlow) { isPetFlow = false; step = 0; renderQuestion(QUESTIONS[0]); return; }
+    if (step > 0) { step--; renderQuestion(QUESTIONS[step]); }
   }
 
-  function startBot(){step=0;renderQuestion(QUESTIONS[0]);}
+  function startBot() { step = 0; renderQuestion(QUESTIONS[0]); }
 
-  function restartBot(){step=-1;answers={};isPetFlow=false;deliveryDate=null;topProduct=null;chosenDate=null;show('screen-welcome');document.getElementById('progress-wrap').classList.add('hidden');}
+  function restartBot() {
+    step = -1; answers = {}; isPetFlow = false; isPetCal = false;
+    petResultsData = null; deliveryDate = null; topProduct = null; chosenDate = null;
+    show('screen-welcome');
+    document.getElementById('progress-wrap').classList.add('hidden');
+  }
 
-  // CALENDAR
-  function initCal(){const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth();renderCal();}
+  function initCal() { const now = new Date(); calYear = now.getFullYear(); calMonth = now.getMonth(); renderCal(); }
 
-  function changeMonth(dir){
-    calMonth+=dir;
-    if(calMonth>11){calMonth=0;calYear++;}
-    if(calMonth<0){calMonth=11;calYear--;}
+  function changeMonth(dir) {
+    calMonth += dir;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    if (calMonth < 0) { calMonth = 11; calYear--; }
     renderCal();
   }
 
-  function renderCal(){
-    document.getElementById('cal-title').textContent=`${MONTHS_ES[calMonth]} ${calYear}`;
-    const grid=document.getElementById('cal-grid'); grid.innerHTML='';
-    ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'].forEach(d=>{
-      const el=document.createElement('div'); el.className='cal-day-label'; el.textContent=d; grid.appendChild(el);
+  function renderCal() {
+    document.getElementById('cal-title').textContent = `${MONTHS_ES[calMonth]} ${calYear}`;
+    const grid = document.getElementById('cal-grid'); grid.innerHTML = '';
+    ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'].forEach(d => {
+      const el = document.createElement('div'); el.className = 'cal-day-label'; el.textContent = d; grid.appendChild(el);
     });
-    const firstDay=new Date(calYear,calMonth,1).getDay();
-    const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
-    const today=new Date(); today.setHours(0,0,0,0);
-    for(let i=0;i<firstDay;i++){const el=document.createElement('div');grid.appendChild(el);}
-    for(let d=1;d<=daysInMonth;d++){
-      const el=document.createElement('div');
-      const date=new Date(calYear,calMonth,d);
-      const isSat=date.getDay()===6;
-      const isPast=date<=today;
-      const ds=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      if(isSat){
-        el.className='cal-day sat'+(isPast?' past':'')+(chosenDate===ds?' chosen':'');
-        if(!isPast)el.onclick=()=>selectDate(ds,d);
-      } else { el.className='cal-day'; }
-      el.textContent=d; grid.appendChild(el);
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const today = new Date(); today.setHours(0,0,0,0);
+    for (let i = 0; i < firstDay; i++) { grid.appendChild(document.createElement('div')); }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const el = document.createElement('div');
+      const date = new Date(calYear, calMonth, d);
+      const isSat = date.getDay() === 6;
+      const isPast = date <= today;
+      const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      if (isSat) {
+        el.className = 'cal-day sat' + (isPast ? ' past' : '') + (chosenDate === ds ? ' chosen' : '');
+        if (!isPast) el.onclick = () => selectDate(ds, d);
+      } else { el.className = 'cal-day'; }
+      el.textContent = d; grid.appendChild(el);
     }
   }
 
-  function selectDate(ds,d){
-    chosenDate=ds; renderCal();
-    setTimeout(()=>{
-      const parts=ds.split('-');
-      deliveryDate=`${d} de ${MONTHS_ES[parseInt(parts[1])-1]} ${parts[0]}`;
-      showResults(scoreProducts(),false);
-    },300);
+  function selectDate(ds, d) {
+    chosenDate = ds; renderCal();
+    setTimeout(() => {
+      const parts = ds.split('-');
+      deliveryDate = `${d} de ${MONTHS_ES[parseInt(parts[1])-1]} ${parts[0]}`;
+      if (isPetCal) { isPetCal = false; showResults(petResultsData, true); }
+      else showResults(scoreProducts(), false);
+    }, 300);
   }
 
-  function skipDate(){deliveryDate=null;showResults(scoreProducts(),false);}
-
-  function goBackFromCal(){chosenDate=null;step=QUESTIONS.length-1;renderQuestion(QUESTIONS[step]);show('screen-question');updateProgress();}
-
-  // SCORING
-  function scoreProducts(){
-    const scores={};
-    PERSON_PRODUCTS.forEach(p=>scores[p.id]=0);
-    const {q2,q3,q4,q5,q6,q7}=answers;
-    const add=(ids,n)=>ids.forEach(id=>{if(scores[id]!==undefined)scores[id]+=n;});
-    PERSON_PRODUCTS.forEach(p=>{if(!p.tags)return;scores[p.id]+=q2==='practical'?p.tags.practical*2:p.tags.emotional*2;});
-    if(q3==='detallista')add(['kit_digital_det','acuarela','cuadro_escritorio','llavero','libreta'],2);
-    if(q3==='practica')add(['termo_tumbler','termo_887','termo_1200','funda','taza_clasica','vaso_bambu','tote_bag','gorra'],2);
-    if(q3==='sentimental')add(['acuarela','lienzo','cuadro_escritorio','kit_digital_cari','blind_box','kit_digital_det'],2);
-    if(q3==='creativa')add(['kit_digital_cari','kit_digital_det','libreta','portavasos','playera','hoodie','acuarela'],2);
-    if(q4==='meaning')add(['acuarela','cuadro_escritorio','lienzo','blind_box','kit_digital_det'],2);
-    if(q4==='pretty')add(['llavero','kit_digital_cari','portavasos','lienzo','acuarela'],2);
-    if(q4==='useful')add(['termo_tumbler','termo_887','termo_1200','funda','taza_clasica','taza_jumbo','vaso_bambu','libreta','tote_bag','gorra','playera'],2);
-    if(q4==='surprise')add(['blind_box','tarjeta_regalo'],3);
-    PERSON_PRODUCTS.forEach(p=>{
-      if(!p.tags)return;
-      if(q5==='birthday')scores[p.id]+=p.tags.occasion_bday*2;
-      if(q5==='special')scores[p.id]+=p.tags.occasion_special*2;
-      if(q5==='justbecause')scores[p.id]+=p.tags.occasion_just*2;
-    });
-    PERSON_PRODUCTS.forEach(p=>{
-      if(!p.tags)return;
-      if(q6==='low')scores[p.id]+=p.tags.budget_low*3;
-      if(q6==='mid')scores[p.id]+=p.tags.budget_mid*2;
-      if(q6==='high')scores[p.id]+=p.tags.budget_high*3;
-    });
-    if(q7==='nohurry'){/* sin cambios */}
-    // fecha específica penaliza lentos ligeramente
-    if(q7==='date')PERSON_PRODUCTS.forEach(p=>{if(p.speed==='slow')scores[p.id]-=1;});
-    return Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([id])=>PERSON_PRODUCTS.find(p=>p.id===id));
+  function skipDate() {
+    deliveryDate = null;
+    if (isPetCal) { isPetCal = false; showResults(petResultsData, true); }
+    else showResults(scoreProducts(), false);
   }
 
-  // RESULTS
+  function goBackFromCal() {
+    chosenDate = null;
+    if (isPetCal) { isPetCal = false; isPetFlow = true; renderQuestion(PET_Q); show('screen-question'); updateProgress(); return; }
+    step = QUESTIONS.length - 1; renderQuestion(QUESTIONS[step]); show('screen-question'); updateProgress();
+  }
+
+  function scoreProducts() {
+    const scores = {};
+    PERSON_PRODUCTS.forEach(p => scores[p.id] = 0);
+    const {q2,q3,q4,q5,q6,q7} = answers;
+    const add = (ids, n) => ids.forEach(id => { if (scores[id] !== undefined) scores[id] += n; });
+    PERSON_PRODUCTS.forEach(p => {
+      if (!p.tags) return;
+      scores[p.id] += q2 === 'practical' ? p.tags.practical * 2 : p.tags.emotional * 2;
+    });
+    if(q3==='detallista') add(['kit_digital_det','acuarela','cuadro_escritorio','llavero','libreta'],2);
+    if(q3==='practica') add(['termo_tumbler','termo_887','termo_1200','funda','taza_clasica','vaso_bambu','tote_bag','gorra'],2);
+    if(q3==='sentimental') add(['acuarela','lienzo','cuadro_escritorio','kit_digital_cari','blind_box','kit_digital_det'],2);
+    if(q3==='creativa') add(['kit_digital_cari','kit_digital_det','libreta','portavasos','playera','hoodie','acuarela'],2);
+    if(q4==='meaning') add(['acuarela','cuadro_escritorio','lienzo','blind_box','kit_digital_det'],2);
+    if(q4==='pretty') add(['llavero','kit_digital_cari','portavasos','lienzo','acuarela'],2);
+    if(q4==='useful') add(['termo_tumbler','termo_887','termo_1200','funda','taza_clasica','taza_jumbo','vaso_bambu','libreta','tote_bag','gorra','playera'],2);
+    if(q4==='surprise') add(['blind_box'],3);
+    PERSON_PRODUCTS.forEach(p => {
+      if (!p.tags) return;
+      if(q5==='birthday') scores[p.id] += p.tags.occasion_bday * 2;
+      if(q5==='special') scores[p.id] += p.tags.occasion_special * 2;
+      if(q5==='justbecause') scores[p.id] += p.tags.occasion_just * 2;
+    });
+    PERSON_PRODUCTS.forEach(p => {
+      if (!p.tags) return;
+      if(q6==='low') scores[p.id] += p.tags.budget_low * 3;
+      if(q6==='mid') scores[p.id] += p.tags.budget_mid * 2;
+      if(q6==='high') scores[p.id] += p.tags.budget_high * 3;
+    });
+    if(q7==='date') PERSON_PRODUCTS.forEach(p => { if(p.speed==='slow') scores[p.id] -= 1; });
+    return Object.entries(scores).sort((a,b) => b[1]-a[1]).slice(0,3).map(([id]) => PERSON_PRODUCTS.find(p => p.id === id));
+  }
+
   function showResults(products, isPet) {
-    topProduct=products[0];
-    const list=document.getElementById('product-list'); list.innerHTML='';
-    products.forEach((p,i)=>{
-      const card=document.createElement('div');
-      card.className='product-card '+(i===0?'top':'other');
-      card.innerHTML=`
-        ${i===0?'<div class="badge">⭐ MEJOR OPCIÓN</div>':''}
+    topProduct = products[0];
+    const list = document.getElementById('product-list'); list.innerHTML = '';
+    products.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'product-card ' + (i === 0 ? 'top' : 'other');
+      card.innerHTML = `
+        ${i===0 ? '<div class="badge">⭐ MEJOR OPCIÓN</div>' : ''}
         <div class="product-inner">
           <div class="product-emoji">${p.emoji}</div>
           <div>
@@ -400,19 +401,31 @@
       list.appendChild(card);
     });
 
-    // nota mascota
-    document.getElementById('note-mascota').classList.toggle('hidden', !!isPet);
+    // Tarjeta de regalo como 4ta opción solo para personas
+    if (!isPet) {
+      const tarjeta = ALL_PRODUCTS.find(p => p.id === 'tarjeta_regalo');
+      const card = document.createElement('div');
+      card.className = 'product-card other';
+      card.innerHTML = `
+        <div class="badge" style="background:#a07050">¿Aún no decides? 🎁</div>
+        <div class="product-inner" style="margin-top:6px">
+          <div class="product-emoji">${tarjeta.emoji}</div>
+          <div>
+            <div class="product-name">${tarjeta.name}</div>
+            <div class="product-desc">Deja que ella elija su favorito del catálogo.</div>
+            <div class="product-price">${tarjeta.price} MXN</div>
+          </div>
+        </div>`;
+      list.appendChild(card);
+    }
 
-    // WhatsApp
+    document.getElementById('note-mascota').classList.toggle('hidden', !!isPet);
     const fechaTexto = deliveryDate ? `Fecha de entrega de interés: ${deliveryDate}` : `Sin prisa por la fecha 🕊️`;
     const waText = `Hola! Vi el recomendador de Rena y me interesa cotizar: *${topProduct.name}*\n${fechaTexto}`;
-    document.getElementById('btn-whatsapp').href=`https://wa.me/526241263124?text=${encodeURIComponent(waText)}`;
-
-    // fecha visible
-    const ctaDate=document.getElementById('cta-date');
-    if(deliveryDate){ctaDate.textContent=`📅 Fecha de interés: ${deliveryDate}`;ctaDate.classList.remove('hidden');}
-    else{ctaDate.classList.add('hidden');}
-
+    document.getElementById('btn-whatsapp').href = `https://wa.me/526241263124?text=${encodeURIComponent(waText)}`;
+    const ctaDate = document.getElementById('cta-date');
+    if (deliveryDate) { ctaDate.textContent = `📅 Fecha de interés: ${deliveryDate}`; ctaDate.classList.remove('hidden'); }
+    else { ctaDate.classList.add('hidden'); }
     show('screen-results');
     document.getElementById('progress-wrap').classList.add('hidden');
   }
