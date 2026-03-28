@@ -421,7 +421,7 @@
 
     document.getElementById('note-mascota').classList.toggle('hidden', !!isPet);
     const fechaTexto = deliveryDate ? `Fecha de entrega de interés: ${deliveryDate}` : `Sin prisa por la fecha 🕊️`;
-    const waText = `Hola! Vi el recomendador de Rena y me interesa cotizar: *${topProduct.name}*\n${fechaTexto}`;
+    const waText = `Hola! Vi la recomendación de Rena y me interesa cotizar: *${topProduct.name}*\n${fechaTexto}`;
     document.getElementById('btn-whatsapp').href = `https://wa.me/526241263124?text=${encodeURIComponent(waText)}`;
     const ctaDate = document.getElementById('cta-date');
     if (deliveryDate) { ctaDate.textContent = `📅 Fecha de interés: ${deliveryDate}`; ctaDate.classList.remove('hidden'); }
