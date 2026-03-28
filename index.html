@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pigmentos · Encuentra el regalo perfecto</title>
+  <title>RENA BOT</title>
+  <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Pigmentospet/Rena-Bot/main/Rena.JPG"/>
   <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
   <meta http-equiv="X-XSS-Protection" content="1; mode=block"/>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://raw.githubusercontent.com; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src *;"/>
@@ -148,7 +149,7 @@
       <div class="product-list" id="product-list"></div>
       <div class="notes-box">
         <div id="note-mascota">🐾 <strong>Precios considerando el retrato de 1 mascota.</strong> Si quieres agregar más mascotas, tiene un costo adicional.</div>
-        <div>🤎 <strong>Para apartar tu producto se requiere el 50% del total del pedido.</strong></div>
+        <div>💛 <strong>Para apartar tu producto se requiere el 50% del total del pedido.</strong></div>
         <div>📍 <strong>Entregas personales los sábados</strong> en Carrusel, Plaza 2000 y Viñas del Mar. También enviamos por Uber/DiDi y envíos nacionales con entrega en 4–10 días hábiles.</div>
       </div>
       <div class="cta-box">
@@ -189,28 +190,28 @@
   const MONTHS_ES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
   const ALL_PRODUCTS = [
-    { id:"postal", name:"Postal Ilustrada", price:"$50", desc:"Una postal con ilustración de tu mascota, perfecta como detalle adicional.", emoji:"💌", speed:"fast", tags:{practical:0,emotional:2,occasion_bday:1,occasion_special:0,occasion_just:2,budget_low:3,budget_mid:0,budget_high:0} },
+    { id:"postal", name:"Postal Ilustrada", price:"$50", desc:"Una postal con ilustración de tu mascota, perfecta como detalle adicional.", emoji:"💌", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:0,occasion_just:2,budget_low:3,budget_mid:0,budget_high:0} },
     { id:"placa", name:"Placa Personalizada", price:"$130", desc:"Placa con el nombre de tu mascota, ideal para que la lleve siempre.", emoji:"🏷️", forPet:true },
     { id:"placa_nfc", name:"Placa NFC", price:"$250", desc:"Placa tecnológica de 2.8cm con información oculta que se activa con un tap.", emoji:"📡", forPet:true },
-    { id:"llavero", name:"Llavero Acrílico", price:"$400", desc:"Llavero con el retrato de tu mascota, elige el fondo que quieras.", emoji:"🔑", speed:"normal", tags:{practical:1,emotional:2,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
+    { id:"llavero", name:"Llavero Acrílico", price:"$400", desc:"Llavero con el retrato de tu mascota, elige el fondo que quieras.", emoji:"🔑", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"libreta", name:"Libreta Caricatura", price:"$450", desc:"Cuaderno A5 15x22cm, 90 hojas, con retrato caricatura, stickers y separador.", emoji:"📓", speed:"normal", tags:{practical:3,emotional:1,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
-    { id:"portavasos", name:"Portavasos Caricatura", price:"$390", desc:"Set de 5 piezas con retratos tipo caricatura en 3 diseños diferentes.", emoji:"🫗", speed:"normal", tags:{practical:2,emotional:1,occasion_bday:2,occasion_special:0,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
+    { id:"portavasos", name:"Portavasos Caricatura", price:"$390", desc:"Set de 5 piezas con retratos tipo caricatura en 3 diseños diferentes.", emoji:"🫗", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"kit_digital_cari", name:"Kit Digital Caricatura", price:"$530", desc:"Ilustración caricatura + stickers impresos + marco portarretrato 20x25cm.", emoji:"🖼️", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:1,budget_mid:2,budget_high:0} },
     { id:"funda", name:"Funda de Celular", price:"$600", desc:"Funda personalizada con el retrato de tu mascota.", emoji:"📱", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"acuarela", name:"Acuarela Original", price:"$350 sin marco / $500 con marco", desc:"Retrato pintado a mano en acuarela, con o sin marco. Una pieza única.", emoji:"🎨", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:2,budget_mid:2,budget_high:0} },
     { id:"lienzo", name:"Lienzo Pintado", price:"$450–$950", desc:"Retrato pintado sobre lienzo. 20x20 ($450), 20x25 ($675), 20x30 ($850), 30x30 ($950).", emoji:"🖼️", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:0,budget_low:0,budget_mid:2,budget_high:2} },
-    { id:"tarjeta_regalo", name:"Tarjeta de Regalo", price:"$400 / $650 / $850 / $1,000", desc:"Para que quien recibe elija su producto favorito del catálogo.", emoji:"🎁", speed:"fast", tags:{practical:2,emotional:1,occasion_bday:1,occasion_special:1,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
+    { id:"tarjeta_regalo", name:"Tarjeta de Regalo", price:"$400 / $650 / $850 / $1,000", desc:"Para que quien recibe elija su producto favorito del catálogo.", emoji:"🎁", speed:"fast", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:1,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"blind_box", name:"Blind Box – Adopta un Pigmento", price:"$480", desc:"1 de 11 personalidades sorpresa + empaque casita + certificado de adopción. Apoya refugios.", emoji:"🎀", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:1,occasion_just:3,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"taza_clasica", name:"Taza Clásica", price:"$550", desc:"Taza con el retrato de tu mascota, para el café de cada mañana.", emoji:"☕", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"taza_jumbo", name:"Taza Jumbo", price:"$600", desc:"Taza grande con retrato de tu mascota.", emoji:"🫖", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"vaso_bambu", name:"Vaso de Bambú", price:"$650", desc:"Vaso de vidrio 500ml con tapa de bambú y el retrato de tu mascota.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
-    { id:"playera", name:"Playera Personalizada", price:"$650", desc:"Playera 100% algodón negra con el retrato de tu mascota.", emoji:"👕", speed:"slow", tags:{practical:2,emotional:1,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
-    { id:"hoodie", name:"Hoodie Personalizado", price:"$950", desc:"Sudadera con el retrato de tu mascota, lavable sin problema.", emoji:"🧥", speed:"slow", tags:{practical:2,emotional:1,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:3} },
+    { id:"playera", name:"Playera Personalizada", price:"$650", desc:"Playera 100% algodón negra con el retrato de tu mascota.", emoji:"👕", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
+    { id:"hoodie", name:"Hoodie Personalizado", price:"$950", desc:"Sudadera con el retrato de tu mascota, lavable sin problema.", emoji:"🧥", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:3} },
     { id:"tote_bag", name:"Tote Bag", price:"$650", desc:"Bolsa de tela con el retrato de tu mascota, lavable y lista para usar.", emoji:"👜", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"termo_tumbler", name:"Termo Tumbler Acrílico", price:"$750", desc:"Termo tumbler acrílico con retrato de tu mascota.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:2} },
     { id:"termo_887", name:"Termo Acero 887ml", price:"$850", desc:"Termo de acero 887ml. Incluye popotes y limpiapopotes.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:2} },
     { id:"termo_1200", name:"Termo Acero 1.2Lt", price:"$850", desc:"Termo de acero 1.2Lt. Incluye popote de plástico.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:0,budget_high:2} },
-    { id:"gorra", name:"Gorra Personalizada", price:"$650", desc:"Gorra negra con el retrato de tu mascota, lavable.", emoji:"🧢", speed:"slow", tags:{practical:2,emotional:0,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
+    { id:"gorra", name:"Gorra Personalizada", price:"$650", desc:"Gorra negra con el retrato de tu mascota, lavable.", emoji:"🧢", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"cuadro_escritorio", name:"Cuadro de Escritorio", price:"$560", desc:"Retrato de tu mascota en un cuadro especial para tu escritorio.", emoji:"🖼️", speed:"slow", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"kit_digital_det", name:"Kit Digital Detallado", price:"$640", desc:"Ilustración detallada tipo realista + stickers + portarretrato + todo impreso.", emoji:"✏️", speed:"slow", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     ...(isEsferasSeason ? [{ id:"esferas", name:"Esferas Navideñas", price:"$350 (8cm) / $400 (11cm)", desc:"Esferas con el retrato de tu mascota. ¡Perfectas para esta temporada!", emoji:"🎄", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:0,occasion_special:2,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} }] : []),
@@ -229,8 +230,9 @@
   ];
 
   const PET_Q = { id:"qpet", text:"¡Uy, un regalo para otra mascota! 🐾 ¿Qué buscas en su accesorio?", options:[{label:"🎨 Algo bonito, que se vea lindo",value:"pretty"},{label:"📋 Que tenga información importante (nombre, datos de contacto…)",value:"info"}] };
+  const PET_CAL_Q = "pet_cal";
 
-  let step=-1, answers={}, isPetFlow=false, deliveryDate=null, topProduct=null;
+  let step=-1, answers={}, isPetFlow=false, isPetCal=false, petResults=null, deliveryDate=null, topProduct=null;
   let calYear, calMonth, chosenDate=null;
 
   function show(id) {
@@ -259,14 +261,25 @@
     show('screen-question'); updateProgress();
   }
 
+  // CALENDAR
+  function initCal(){const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth();renderCal();}
+
+  function changeMonth(dir){
+    calMonth+=dir;
+    if(calMonth>11){calMonth=0;calYear++;}
+    if(calMonth<0){calMonth=11;calYear--;}
+    renderCal();
+  }
+
   function handleAnswer(value,btn) {
     btn.classList.add('selected');
     setTimeout(()=>{
       if(isPetFlow){
-        const pr=value==='pretty'
+        petResults=value==='pretty'
           ?[ALL_PRODUCTS.find(p=>p.id==='placa'),ALL_PRODUCTS.find(p=>p.id==='placa_nfc')]
           :[ALL_PRODUCTS.find(p=>p.id==='placa_nfc'),ALL_PRODUCTS.find(p=>p.id==='placa')];
-        showResults(pr,true); isPetFlow=false; return;
+        isPetFlow=false; isPetCal=true; initCal(); show('screen-calendar');
+        document.getElementById('progress-wrap').classList.add('hidden'); return;
       }
       const q=QUESTIONS[step]; answers[q.id]=value;
       if(q.id==='q1'&&value==='pet'){isPetFlow=true;renderQuestion(PET_Q);return;}
@@ -390,7 +403,7 @@
 
     // WhatsApp
     const fechaTexto = deliveryDate ? `Fecha de entrega de interés: ${deliveryDate}` : `Sin prisa por la fecha 🕊️`;
-    const waText = `Hola👋! Vi el recomendador de Rena🐕 y me interesa cotizar: *${topProduct.name}*\n${fechaTexto}`;
+    const waText = `Hola! Vi el recomendador de Rena y me interesa cotizar: *${topProduct.name}*\n${fechaTexto}`;
     document.getElementById('btn-whatsapp').href=`https://wa.me/526241263124?text=${encodeURIComponent(waText)}`;
 
     // fecha visible
