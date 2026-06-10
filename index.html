@@ -188,9 +188,9 @@
 
   const ALL_PRODUCTS = [
     { id:"postal", name:"Postal Ilustrada", price:"$50", desc:"Una postal con ilustración de tu mascota.", emoji:"💌", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:0,occasion_just:2,budget_low:3,budget_mid:0,budget_high:0} },
-    { id:"placa", name:"Placa Personalizada", price:"$130", desc:"Placa con el nombre de tu mascota, ideal para que la lleve siempre.", emoji:"🏷️", forPet:true },
-    { id:"placa_nfc", name:"Placa NFC", price:"$250", desc:"Placa tecnológica de 2.8cm con información oculta que se activa con un tap.", emoji:"📡", forPet:true },
-    { id:"collar", name:"Collar Único con Placa", price:"$230", desc:"Collar artesanal con placa de tu mascota. Piezas únicas por colección — escríbenos para ver los disponibles.", emoji:"🐕", forPet:true },
+    { id:"placa", name:"Placa Personalizada", price:"$130", desc:"Solo la placa con el nombre de tu mascota, sin collar. Ideal para colocar en cualquier collar que ya tenga.", emoji:"🏷️", forPet:true },
+    { id:"placa_nfc", name:"Placa NFC", price:"$250", desc:"Solo la placa tecnológica de 2.8cm — sin collar. Información oculta que se activa con un tap.", emoji:"📡", forPet:true },
+    { id:"collar", name:"Collar Único con Placa", price:"$230", desc:"Collar artesanal con placa incluida. Piezas únicas por colección — escríbenos para ver los disponibles.", emoji:"🐕", forPet:true },
     { id:"llavero", name:"Llavero Acrílico", price:"$400", desc:"Llavero con el retrato de tu mascota, elige el fondo que quieras.", emoji:"🔑", speed:"normal", tags:{practical:0,emotional:3,occasion_bday:2,occasion_special:1,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"libreta", name:"Libreta Caricatura", price:"$450", desc:"Cuaderno A5 15x22cm, 90 hojas, con retrato caricatura, stickers y separador.", emoji:"📓", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"portavasos", name:"Portavasos Caricatura", price:"$390", desc:"Set de 5 piezas con retratos tipo caricatura en 3 diseños diferentes.", emoji:"🫗", speed:"normal", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
@@ -229,6 +229,7 @@
   ];
 
   const PET_Q = { id:"qpet", text:"¡Uy, un regalo para otra mascota! 🐾 ¿Qué buscas en su accesorio?", options:[{label:"🎨 Algo bonito, que se vea lindo",value:"pretty"},{label:"📋 Que tenga información importante (nombre, datos de contacto…)",value:"info"}] };
+
 
   let step=-1, answers={}, isPetFlow=false, isPetCal=false, petResultsData=null, deliveryDate=null, topProduct=null;
   let calYear, calMonth, chosenDate=null;
@@ -269,8 +270,8 @@
     setTimeout(() => {
       if (isPetFlow) {
         petResultsData = value === 'pretty'
-          ? [ALL_PRODUCTS.find(p => p.id === 'placa'), ALL_PRODUCTS.find(p => p.id === 'placa_nfc')]
-          : [ALL_PRODUCTS.find(p => p.id === 'placa_nfc'), ALL_PRODUCTS.find(p => p.id === 'placa')];
+          ? [ALL_PRODUCTS.find(p => p.id === 'collar'), ALL_PRODUCTS.find(p => p.id === 'placa'), ALL_PRODUCTS.find(p => p.id === 'placa_nfc')]
+          : [ALL_PRODUCTS.find(p => p.id === 'placa_nfc'), ALL_PRODUCTS.find(p => p.id === 'placa'), ALL_PRODUCTS.find(p => p.id === 'collar')];
         isPetFlow = false; isPetCal = true;
         initCal(); show('screen-calendar');
         document.getElementById('progress-wrap').classList.add('hidden');
@@ -406,23 +407,8 @@
       list.appendChild(card);
     });
 
-    // Collar como 3ra opción fija en flujo mascota
-    if (isPet) {
-      const collar = ALL_PRODUCTS.find(p => p.id === 'collar');
-      const card = document.createElement('div');
-      card.className = 'product-card other';
-      card.innerHTML = `
-        <div class="badge" style="background:#a07050">¿Algo más especial? 🐕</div>
-        <div class="product-inner" style="margin-top:6px">
-          <div class="product-emoji">${collar.emoji}</div>
-          <div>
-            <div class="product-name">${collar.name}</div>
-            <div class="product-desc">${collar.desc}</div>
-            <div class="product-price">${collar.price} MXN</div>
-          </div>
-        </div>`;
-      list.appendChild(card);
-    }
+    // En flujo mascota los 3 resultados ya incluyen collar+placas, no se agrega extra
+    if (isPet) {}
 
     // Tarjeta de regalo como 4ta opción fija en flujo persona
     if (!isPet) {
