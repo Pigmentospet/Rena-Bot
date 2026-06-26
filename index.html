@@ -365,20 +365,13 @@
 
   function scoreProducts() {
     const {q2, q3, q4, q5} = answers;
-    const budget = q5;
 
-    // Paso 1: filtrar por Q2 (práctico vs emocional) — descarte
+    // Paso 1: filtrar por Q2 (práctico vs emocional) — descarte duro
     const q2Cat = q2 === 'practica' ? 'practica' : 'emotional';
     let pool = PERSON_PRODUCTS.filter(p => p.cat && p.cat.includes(q2Cat));
 
-    // Paso 2: filtrar por presupuesto — descarte fuerte
-    // Si hay productos que pasan el filtro de presupuesto, usarlos; si no hay suficientes, relajar
-    const inBudget = pool.filter(p => BUDGET_RANGE[p.id] === budget);
-    if (inBudget.length >= 3) pool = inBudget;
-    else if (inBudget.length > 0) {
-      // Mezclar: priorizar los del rango pero no descartar todos los demás
-      pool = [...inBudget, ...pool.filter(p => BUDGET_RANGE[p.id] !== budget)];
-    }
+    // Paso 2: filtrar por presupuesto — descarte duro, sin excepciones
+    pool = pool.filter(p => BUDGET_RANGE[p.id] === q5);
 
     // Paso 3: puntuar el pool restante
     const scores = {};
@@ -394,12 +387,7 @@
       if (!p.occ) return;
       if (q4 === 'bday') scores[p.id] += p.occ.bday * 2;
       else if (q4 === 'special') scores[p.id] += p.occ.special * 2;
-      else if (q4 === 'just') scores[p.id] += 2; // todos suman igual en "sin fecha"
-    });
-
-    // Q5 — presupuesto: x5 a los que están en rango (refuerzo extra sobre el descarte)
-    pool.forEach(p => {
-      if (BUDGET_RANGE[p.id] === budget) scores[p.id] += 5;
+      else scores[p.id] += 2;
     });
 
     return Object.entries(scores).sort((a,b) => b[1]-a[1]).slice(0,3).map(([id]) => pool.find(p => p.id === id));
