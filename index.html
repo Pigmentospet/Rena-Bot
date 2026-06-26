@@ -199,7 +199,6 @@
     { id:"acuarela", name:"Acuarela Original", price:"$350 sin marco / $500 con marco", desc:"Retrato pintado a mano en acuarela, con o sin marco. Una pieza única.", emoji:"🎨", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:1,budget_low:2,budget_mid:2,budget_high:0} },
     { id:"lienzo", name:"Lienzo Pintado", price:"$450–$950", desc:"Retrato pintado sobre lienzo. 20x20 ($450), 20x25 ($675), 20x30 ($850), 30x30 ($950).", emoji:"🖼️", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:3,occasion_just:0,budget_low:0,budget_mid:2,budget_high:2} },
     { id:"tarjeta_regalo", name:"Tarjeta de Regalo", price:"$400 / $650 / $850 / $1,000", desc:"Para que quien recibe elija su producto favorito del catálogo.", emoji:"🎁", speed:"fast", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:1,occasion_just:2,budget_low:2,budget_mid:1,budget_high:0} },
-    { id:"blind_box", name:"Blind Box – Adopta un Pigmento", price:"$480", desc:"1 de 11 personalidades sorpresa + empaque casita + certificado de adopción. Apoya refugios.", emoji:"🎀", speed:"fast", tags:{practical:0,emotional:3,occasion_bday:1,occasion_special:1,occasion_just:3,budget_low:2,budget_mid:1,budget_high:0} },
     { id:"taza_clasica", name:"Taza Clásica", price:"$550", desc:"Taza con el retrato de tu mascota, para el café de cada mañana.", emoji:"☕", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"taza_jumbo", name:"Taza Jumbo", price:"$600", desc:"Taza grande con retrato de tu mascota.", emoji:"🫖", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:2,occasion_special:0,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
     { id:"vaso_bambu", name:"Vaso de Bambú", price:"$650", desc:"Vaso de vidrio 500ml con tapa de bambú y el retrato de tu mascota.", emoji:"🥤", speed:"slow", tags:{practical:3,emotional:0,occasion_bday:1,occasion_special:2,occasion_just:1,budget_low:0,budget_mid:2,budget_high:0} },
@@ -229,7 +228,6 @@
   ];
 
   const PET_Q = { id:"qpet", text:"¡Uy, un regalo para otra mascota! 🐾 ¿Qué buscas en su accesorio?", options:[{label:"🎨 Algo bonito, que se vea lindo",value:"pretty"},{label:"📋 Que tenga información importante (nombre, datos de contacto…)",value:"info"}] };
-
 
   let step=-1, answers={}, isPetFlow=false, isPetCal=false, petResultsData=null, deliveryDate=null, topProduct=null;
   let calYear, calMonth, chosenDate=null;
@@ -366,12 +364,12 @@
     });
     if(q3==='detallista') add(['kit_digital_det','acuarela','cuadro_escritorio','llavero','libreta'],2);
     if(q3==='practica') add(['termo_tumbler','termo_887','termo_1200','funda','taza_clasica','vaso_bambu','tote_bag','gorra'],2);
-    if(q3==='sentimental') add(['acuarela','lienzo','cuadro_escritorio','kit_digital_cari','blind_box','kit_digital_det'],2);
+    if(q3==='sentimental') add(['acuarela','lienzo','cuadro_escritorio','kit_digital_cari','kit_digital_det'],2);
     if(q3==='creativa') add(['kit_digital_cari','kit_digital_det','libreta','portavasos','playera','hoodie','acuarela'],2);
-    if(q4==='meaning') add(['acuarela','cuadro_escritorio','lienzo','blind_box','kit_digital_det'],2);
+    if(q4==='meaning') add(['acuarela','cuadro_escritorio','lienzo','kit_digital_det'],2);
     if(q4==='pretty') add(['llavero','kit_digital_cari','portavasos','lienzo','acuarela'],2);
     if(q4==='useful') add(['termo_tumbler','termo_887','termo_1200','funda','taza_clasica','taza_jumbo','vaso_bambu','libreta','tote_bag','gorra','playera'],2);
-    if(q4==='surprise') add(['blind_box'],3);
+    if(q4==='surprise') add(['cuadro_mini','llavero','postal'],3);
     PERSON_PRODUCTS.forEach(p => {
       if (!p.tags) return;
       if(q5==='birthday') scores[p.id] += p.tags.occasion_bday * 2;
@@ -407,10 +405,6 @@
       list.appendChild(card);
     });
 
-    // En flujo mascota los 3 resultados ya incluyen collar+placas, no se agrega extra
-    if (isPet) {}
-
-    // Tarjeta de regalo como 4ta opción fija en flujo persona
     if (!isPet) {
       const tarjeta = ALL_PRODUCTS.find(p => p.id === 'tarjeta_regalo');
       const card = document.createElement('div');
